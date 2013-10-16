@@ -601,11 +601,6 @@ function checkdesk_preprocess_node(&$variables) {
     if ($variables['title'] === _checkdesk_core_auto_title($variables['elements']['#node']) || $variables['title'] === t('Update')) {
       unset($variables['title']);
     }
-  }
-
-  $variables['icon'] = '';
-  
-  if ($variables['type'] == 'media') {
     //Add author info to variables
     $user = user_load($variables['elements']['#node']->uid);
     $user_picture = $user->picture;
@@ -618,57 +613,29 @@ function checkdesk_preprocess_node(&$variables) {
       );
       $variables['user_avatar'] = l(theme('image_style', array('path' => $user_picture->uri, 'alt' => t(check_plain($variables['elements']['#node']->name)), 'style_name' => 'navigation_avatar')), 'user/'. $variables['uid'], $options);
     }
-    //Add node creation info(author name plus creation time
-    $variables['media_creation_info'] = t('Added by <a class="contributor" href="@user">!user</a> <span class="separator">&#9679;</span> <time class="date-time" datetime="!timestamp">!interval ago</time>', array(
+    // Add node creation info (author name plus creation time)
+    $variables['post_creation_info'] = t('Translated by <a class="contributor" href="@user">!user</a> <span class="separator">&#9679;</span> <time class="date-time" datetime="!timestamp">!interval ago</time>', array(
       '@user' => url('user/'. $variables['uid']),
       '!user' => $variables['elements']['#node']->name,
       '!timestamp' => format_date($variables['created'], 'custom', 'Y-m-d\TH:i:sP'),
       '!datetime' => format_date($variables['created'], 'custom', t('M d, Y \a\t g:ia e')),
       '!interval' => format_interval(time() - $variables['created'], 1),
     ));
-    //Add activity report with status
-    $term = isset($variables['elements']['#node']->field_rating[LANGUAGE_NONE][0]['taxonomy_term']) ? 
-      $variables['elements']['#node']->field_rating[LANGUAGE_NONE][0]['taxonomy_term'] : 
-      taxonomy_term_load($variables['elements']['#node']->field_rating[LANGUAGE_NONE][0]['tid']);
-    $status_name = $term->name;
-    if ($status_name !== 'Not Applicable') {
-      $view = views_get_view('activity_report');
-      $view->set_arguments(array($variables['nid']));
-      $view->get_total_rows = TRUE;
-      $view_output = $view->preview('block');
-      $total_rows = $view->total_rows;
-      $view->destroy();
-      if ($total_rows) {
-        $variables['media_activity_report_count'] = $total_rows;
-        $variables['media_activity_report'] = $view_output;
-        $status_class = '';
-        $icon = '';
-        if ($status_name == 'Verified') {
-          $status_class = 'verified';
-          $icon = '<span class="icon-ok-sign"></span> ';
-        }
-        elseif ($status_name == 'In Progress') {
-          $status_class = 'in-progress';
-          $icon = '<span class="icon-random"></span> ';
-        }
-        elseif ($status_name == 'Undetermined') {
-          $status_class = 'undetermined';
-          $icon = '<span class="icon-question-sign"></span> ';
-        }
-        elseif ($status_name == 'False') {
-          $status_class = 'false';
-          $icon = '<span class="icon-remove-sign"></span> ';
-        }
-        $variables['status_class'] = $status_class;
-        $variables['status'] = $icon . '<span class="status-name">' . t($status_name) . '</span>';
-      }
-      if (user_is_logged_in()) {
-        $variables['media_activity_footer'] = '';
-      }
-      else {
-        $variables['media_activity_footer'] = t('Please <a href="@login_url">login</a> to be able to add footnotes and contribute to the fact-checking of this report.', array('@login_url' => url('user/login')));
-      }
-    }
+  }
+
+  $variables['icon'] = '';
+  
+  if ($variables['type'] == 'media') {
+    // Add activity report with status
+    $view = views_get_view('activity_report');
+    $view->set_arguments(array($variables['nid']));
+    $view->get_total_rows = TRUE;
+    $view_output = $view->preview('block');
+    $total_rows = $view->total_rows;
+    $view->destroy();
+    $variables['media_activity_report_count'] = $total_rows;
+    $variables['media_activity_report'] = $view_output;
+    $variables['media_activity_footer'] = '';
 
     // HACK: Refs #1338, add a unique class to the ctools modal for a report
     if (arg(0) == 'report-view-modal') {
@@ -992,7 +959,7 @@ function checkdesk_form_comment_form_alter(&$form, &$form_state) {
   $form['author']['homepage'] = NULL;
   $form['author']['mail'] = NULL;
   $form['actions']['submit']['#attributes']['class'] = array('btn');
-  $form['actions']['submit']['#value'] = t('Add footnote');
+  $form['actions']['submit']['#value'] = t('Add annotation');
   $form['actions']['submit']['#ajax'] = array(
     'callback' => '_checkdesk_comment_form_submit',
     'wrapper' => 'node-' . $nid,
@@ -1013,11 +980,11 @@ function _checkdesk_comment_form_submit($form, $form_state) {
 
   $commands = array();
   // Update footnotes
-  $commands[] = ajax_command_replace('#node-' . $nid . ' .view-activity-report', $output);
+  $commands[] = ajax_command_replace('#report-activity-node-' . $nid . ' .view-activity-report', $output);
   // Update footnotes count
-  $commands[] = ajax_command_replace('#node-' . $nid . ' .report-footnotes-count span', '<span>' . $view->total_rows . '</span>');
+  $commands[] = ajax_command_replace('#report-activity-node-' . $nid . ' .report-footnotes-count', format_plural($view->total_rows, '<span>1</span> Translation Note', '<span>@count</span> Translation Notes'));
   // Clear textarea
-  $commands[] = ajax_command_invoke('#node-' . $nid . ' .comment-form textarea', 'val', array(''));
+  $commands[] = ajax_command_invoke('#report-activity-node-' . $nid . ' .comment-form textarea', 'val', array(''));
   // Scroll to new footnote
   $commands[] = ajax_command_invoke('#report-activity-node-' . $nid, 'scrollToHere');
 

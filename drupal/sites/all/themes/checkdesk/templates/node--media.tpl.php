@@ -20,12 +20,6 @@
         </div>
       <?php endif; ?>
       <div class="report-attributes">
-        <div class="added-by">
-          <?php if (isset($user_avatar)) : ?>
-              <?php print $user_avatar; ?>
-          <?php endif; ?>
-          <?php print $media_creation_info; ?>
-        </div>
       </div>
     </section>
 
@@ -38,12 +32,7 @@
       <section id="report-activity-node-<?php print $node->nid; ?>" class="report-activity">
           <header<?php if ($status_class) print ' class="' . $status_class . '"'; ?>>
             <a class="report-activity-header" href="#">
-              <h3 class="report-footnotes-count"><span><?php print $media_activity_report_count . '</span> ' . t('fact-checking footnotes'); ?></h3>
-              <div class="report-status">
-                <?php if ($status): ?>
-                  <?php print $status; ?>
-                <?php endif; ?>
-              </div>
+              <h3 class="report-footnotes-count"><?php print format_plural($media_activity_report_count, '<span>1</span> Translation Note', '<span>@count</span> Translation Notes'); ?></h3>
             </a>
           </header>
           <div class="activity-wrapper">

@@ -4,6 +4,26 @@
 .update {
 	@include ctb-clearfix;
 
+	// added by
+	.added-by {
+		float: $alpha;
+		color: rgba(0,0,0,.8);
+		font-size: modular-scale(0) - modular-scale(-3); // 14px
+    padding: 0;
+		margin-bottom: $absolute-line-height;
+		.separator {
+			color: rgba(0,0,0,.4);
+			font-size: $smaller-font-size;
+		}
+	}
+
+	a {
+		color: $report-text-color;
+		&:hover {
+			color: $identity;
+		}
+	}
+
 	.update-body {
     padding-top: $absolute-line-height/2 - 4; // to align with update number
 
@@ -22,7 +42,7 @@
 			margin: $absolute-line-height/4 0;
 		}
 		p {
-			margin: $absolute-line-height/3 0;
+			margin: $absolute-line-height 0;
 		}
 	} // body
   

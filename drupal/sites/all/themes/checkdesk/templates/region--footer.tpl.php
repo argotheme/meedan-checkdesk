@@ -6,5 +6,5 @@
 		</a>
 	</li>
 	<?php endif; ?>
-	<li><a class="checkdesk" href="http://checkdesk.org" target="_blank"><span><?php print t('Powered by '); ?></span></a></li>
+	<li><a class="checkdesk" href="http://translatedesk.net" target="_blank"><span><?php print t('Powered by '); ?></span></a></li>
 </ul>

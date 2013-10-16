@@ -6,15 +6,17 @@ require "modular-scale" #for ratios
 require "compass_twitter_bootstrap" #deprecated Sass-wise; for legacy support only CGB
 # see https://github.com/vwall/compass-twitter-bootstrap
 
+THEME = 'checkdesk'
+
 line_comments = false
 
 drupal_dir = "drupal"
 themes_dir = "sites/all/themes/"
-extensions_dir = "checkdesk/assets/extensions/"
+extensions_dir = "#{THEME}/assets/extensions/"
 bowerbird_extension_dir = "bowerbird/"
 full_bowerbird_extension_dir = File.join(drupal_dir, themes_dir, extensions_dir, bowerbird_extension_dir)
 
-assets_dir = "checkdesk/assets"
+assets_dir = "#{THEME}/assets"
 full_assets_dir = File.join(drupal_dir, themes_dir, assets_dir)
 http_path       = "/"
 css_dir         = File.join(full_assets_dir, "css")

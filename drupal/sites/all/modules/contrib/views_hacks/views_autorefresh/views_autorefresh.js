@@ -32,12 +32,12 @@ Drupal.behaviors.views_autorefresh = {
             var target = this;
             $('select,input,textarea', target)
               .click(function () {
-                if (Drupal.settings.views_autorefresh[settings.view_name].timer) {
+                if (Drupal.settings.views_autorefresh && Drupal.settings.views_autorefresh[settings.view_name] && Drupal.settings.views_autorefresh[settings.view_name].timer) {
                   clearTimeout(Drupal.settings.views_autorefresh[settings.view_name].timer);
                 }
               })
               .change(function () {
-                if (Drupal.settings.views_autorefresh[settings.view_name].timer) {
+                if (Drupal.settings.views_autorefresh && Drupal.settings.views_autorefresh[settings.view_name] && Drupal.settings.views_autorefresh[settings.view_name].timer) {
                   clearTimeout(Drupal.settings.views_autorefresh[settings.view_name].timer);
                 }
               });

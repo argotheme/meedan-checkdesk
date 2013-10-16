@@ -31,13 +31,9 @@ function checkdesk_core_feature_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '1';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'View all @total footnotes';
-  $handler->display->display_options['pager']['options']['load_all'] = 1;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'heartbeat_activity';
   $handler->display->display_options['row_options']['links'] = 0;
@@ -91,10 +87,7 @@ function checkdesk_core_feature_views_default_views() {
   $handler->display->display_options['filters']['message_id']['table'] = 'heartbeat_activity';
   $handler->display->display_options['filters']['message_id']['field'] = 'message_id';
   $handler->display->display_options['filters']['message_id']['value'] = array(
-    'status_report' => 'status_report',
     'new_comment_report' => 'new_comment_report',
-    'new_report' => 'new_report',
-    'publish_report' => 'publish_report',
   );
 
   /* Display: Block */
@@ -164,13 +157,6 @@ function checkdesk_core_feature_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
     t('Node ID'),
     t('.'),
     t(','),

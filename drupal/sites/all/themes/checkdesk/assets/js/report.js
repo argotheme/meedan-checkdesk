@@ -21,19 +21,12 @@
 
   Drupal.behaviors.reports = {
     attach: function (context, settings) {
-      // Show report activity
-      $('.report-activity > header').unbind('click').click(function(event) {
-        var target = $(this),
-            element = target.parent();
-        if (element.find('.activity-wrapper').is(':visible')) {
-          element.find('.activity-wrapper').slideUp('fast');
-          element.removeClass('open');
-        }
-        else {
-          element.find('.activity-wrapper').slideDown('fast');
-          element.addClass('open');
-        }
-        return false;
+      // HACK: Footnotes should go to the end of the update body
+      $('.update-body', context).each(function() {
+        var $update = $(this);
+        $update.find('.report-activity').each(function() {
+          $update.next('.added-by').after($(this));
+        });
       });
 
       // Remove duplicates added incrementally by views_autorefresh after loading more content with views_load_more
