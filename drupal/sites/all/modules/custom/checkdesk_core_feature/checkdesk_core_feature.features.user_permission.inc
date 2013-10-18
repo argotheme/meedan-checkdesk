@@ -505,7 +505,6 @@ function checkdesk_core_feature_user_default_permissions() {
     'name' => 'create media content',
     'roles' => array(
       'administrator' => 'administrator',
-      'citizen journalist' => 'citizen journalist',
       'journalist' => 'journalist',
     ),
     'module' => 'node',
@@ -525,7 +524,7 @@ function checkdesk_core_feature_user_default_permissions() {
     'name' => 'create post content',
     'roles' => array(
       'administrator' => 'administrator',
-      'journalist' => 'journalist',
+      'citizen journalist' => 'citizen journalist',
     ),
     'module' => 'node',
   );
@@ -657,7 +656,7 @@ function checkdesk_core_feature_user_default_permissions() {
     'name' => 'delete own post content',
     'roles' => array(
       'administrator' => 'administrator',
-      'journalist' => 'journalist',
+      'citizen journalist' => 'citizen journalist',
     ),
     'module' => 'node',
   );
@@ -829,7 +828,6 @@ function checkdesk_core_feature_user_default_permissions() {
     'name' => 'edit own media content',
     'roles' => array(
       'administrator' => 'administrator',
-      'citizen journalist' => 'citizen journalist',
       'journalist' => 'journalist',
     ),
     'module' => 'node',
@@ -849,7 +847,7 @@ function checkdesk_core_feature_user_default_permissions() {
     'name' => 'edit own post content',
     'roles' => array(
       'administrator' => 'administrator',
-      'journalist' => 'journalist',
+      'citizen journalist' => 'citizen journalist',
     ),
     'module' => 'node',
   );
