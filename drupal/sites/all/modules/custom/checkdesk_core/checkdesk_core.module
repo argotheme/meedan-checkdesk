@@ -650,6 +650,12 @@ function _checkdesk_core_node_links($node, $account = NULL) {
         'href' => '#',
         'attributes' => array('title' => $title),
       );
+      $links['checkdesk-share-embed'] = array(
+        'html' => TRUE,
+        'title' => t('Embed this story') . '<br><textarea class="embed-code" onclick="this.select();" readonly>' . check_plain(checkdesk_oembed_embed_code($node->nid)) . '</textarea>',
+        'href' => $url,
+        'attributes' => array('title' => $node->title, 'class' => array('embed'), 'onclick' => 'return false;'),
+      );
     }
 
     if ($node->type == 'media') {
@@ -658,12 +664,6 @@ function _checkdesk_core_node_links($node, $account = NULL) {
         'title' => '',
         'href' => '#',
         'attributes' => array('title' => $title),
-      );
-      $links['checkdesk-share-embed'] = array(
-        'html' => TRUE,
-        'title' => t('Embed this report') . '<br><textarea class="embed-code" onclick="this.select();" readonly>' . check_plain(checkdesk_oembed_embed_code($node->nid)) . '</textarea>',
-        'href' => $url,
-        'attributes' => array('title' => $node->title, 'class' => array('embed'), 'onclick' => 'return false;'),
       );
     }
   }
