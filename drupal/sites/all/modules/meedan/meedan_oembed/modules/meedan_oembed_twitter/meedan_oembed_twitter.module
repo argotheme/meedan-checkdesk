@@ -69,6 +69,9 @@ function meedan_oembed_twitter_handler($provider, $url) {
     $data->html = preg_replace('/\xE0[\x80-\x9F][\x80-\xBF]'.
       '|\xED[\xA0-\xBF][\x80-\xBF]/S', '', $data->html);
 
+    // We don't want to load conversations
+    $data->html = preg_replace('/<blockquote /', '<blockquote data-conversation="none" ', $data->html);
+
     $embed = $data;
 
     // Set information Twitter doesn't give to us
