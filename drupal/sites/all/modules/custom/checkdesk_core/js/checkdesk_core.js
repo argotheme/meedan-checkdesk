@@ -45,13 +45,23 @@
         accept: '.draggable',
         tolerance: 'touch',
         drop: function(event, ui) {
-          $(ui.draggable).hide();
-
           // Retrieve the Views information from the DOM.
           var data       = $(ui.draggable).data('views'),
               $ckeditor  = $('.cke', this),
               $textarea  = $('textarea', this),
               instance;
+
+          // Just allow one report per update
+          var value = $textarea.val();
+          if (CKEDITOR && $ckeditor && CKEDITOR.instances[$textarea.attr('id')]) {
+            value = CKEDITOR.instances[$textarea.attr('id')].getData();
+          }
+          if (value && value.match(/\[[^:]+:[0-9]+\]/g)) {
+            alert(Drupal.t('You can only add one report here')); 
+            return;
+          }
+          
+          $(ui.draggable).hide();
 
           // Either insert the text into CKEDITOR, if available, else directly
           // into the text editor.
