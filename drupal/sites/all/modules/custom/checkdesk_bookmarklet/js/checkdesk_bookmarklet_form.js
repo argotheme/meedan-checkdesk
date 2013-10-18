@@ -36,27 +36,23 @@ jQuery(function($) {
       }
     });
   }
-
+  
   // Update preview if URL changes
+  $('.fb-message .description').show().html('');
   $('#edit-field-link-und-0-url').keyup(function() {
     var url = $(this).val(),
         done = $('#edit-submit'),
         wait;
-    if (/https?:\/\/[^.]+\.[^.]+/.test(url)) {
+    if (/^https?:\/\/twitter\.com\/.+/.test(url)) {
       done.removeAttr('disabled');
       clearTimeout($.data(this, 'timer'));
       wait = setTimeout(getMediaPreview, 1500);
       $(this).data('timer', wait);
+      $('.fb-message .description').html('');
     }
     else {
       done.attr('disabled', 'disabled');
-    }
-    
-    if (/https?:\/\/([^.]+\.)?facebook\.com/.test(url)) {
-      $('.fb-message .description').show();
-    }
-    else {
-      $('.fb-message .description').hide();
+      $('.fb-message .description').html(Drupal.t('You can only add reports from Twitter'));
     }
   });
 
