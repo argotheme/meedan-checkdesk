@@ -2272,6 +2272,10 @@ nav[role="navigation"] a[href*="add/post"]:before, .story .compose-update-form .
   content: "\f086";
 }
 
+.report .report-content .report-media .container .twitter .embed-geo-data .icon-pushpin:before {
+  content: "\f08d";
+}
+
 .report h3 > a[href*="twitter.com"]:before, #widgets .elsewhere ul li span.icon-twitter:before, #user-login #edit-social-media-signin li.first a:before, #user-register-form #edit-social-media-signin li.first a:before {
   content: "\f099";
 }
@@ -5287,7 +5291,7 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
   text-align: center;
 }
 .report .report-content .report-media .container {
-  max-width: 100%;
+  width: 100%;
   min-height: 260px;
   text-align: left;
 }
@@ -5382,9 +5386,27 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
   height: 100%;
   display: inline-block;
 }
-.report .report-content .report-media .container .twitter {
-  width: 100%;
-  max-width: 100%;
+.report .report-content .report-media .container .twitter iframe {
+  width: 100% !important;
+}
+.report .report-content .report-media .container .twitter .embed-geo-data {
+  text-align: right;
+  font-size: 11px;
+  margin: 0;
+  margin-top: 10px;
+  margin-right: 25px;
+}
+.report .report-content .report-media .container .twitter .embed-geo-data .icon-pushpin:before {
+  font-family: "FontAwesome";
+  font-size: 14px;
+  line-height: inherit;
+  color: "black";
+  margin: 0 5.5px;
+  width: auto;
+  vertical-align: baseline;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em;
+  font-weight: normal;
 }
 .report .report-content .report-media .container .twitter .oembed-content, .report .report-content .report-media .container .twitter .oembed-attributes {
   padding: 0 11px;

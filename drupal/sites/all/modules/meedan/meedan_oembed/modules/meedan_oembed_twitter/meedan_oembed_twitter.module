@@ -35,17 +35,69 @@ function meedan_oembed_twitter_theme() {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for `twitter_admin_form`.
+ */
+function meedan_oembed_twitter_form_twitter_admin_form_alter(&$form, &$form_state, $form_id) {
+  $form['oauth']['twitter_token'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Access token'),
+    '#description' => t('Used by meedan_oembed.'),
+    '#default_value' => variable_get('twitter_token', NULL),
+  );
+  $form['oauth']['twitter_token_secret'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Access token secret'),
+    '#description' => t('Used by meedan_oembed.'),
+    '#default_value' => variable_get('twitter_token_secret', NULL),
+  );
+}
+
+/**
  * Attempts to create an oembed response from a tweet.
  */
 function meedan_oembed_twitter_handler($provider, $url) {
   try {
+
+    // Parse Twitter URL
+    preg_match('/^https?:\/\/(www\.)?twitter\.com\/([^\/]*)\/status\/([0-9]*)\/?$/', $url, $twitter_url);
+    $profile = $twitter_url[2];
+    $status = $twitter_url[3];
+    $url_info = parse_url($url);
+    $provider_url = $url_info['scheme'] . '://' . $url_info['host'];
+    if (empty($profile) || empty($status)) {
+      watchdog('TwitterAPI', t('No profile or status.'));
+      return NULL;
+    }
+
+    // Get Twitter credentials
+    $key = variable_get('twitter_consumer_key', '');
+    $secret = variable_get('twitter_consumer_secret', '');
+    $token = variable_get('twitter_token', '');
+    $token_secret = variable_get('twitter_token_secret', '');
+    if ($key == '' || $secret == '' || $token == '' || $token_secret == '') {
+      watchdog('TwitterAPI', t('Please configure your Twitter OAuth settings.'));
+      return NULL;
+    }
+
+    // Connect to the API to get the geotag (check https://dev.twitter.com/docs/api/1.1/get/statuses/show/%3Aid)
+    $api_url = 'https://api.twitter.com/1.1/statuses/show/' . $status . '.json';
+    $oauth_hash = 'oauth_consumer_key=' . $key . '&oauth_nonce=' . (time() + 5 * 3600) . '&oauth_signature_method=HMAC-SHA1&oauth_timestamp=' . (time() + 5 * 3600) . '&oauth_token=' . $token . '&oauth_version=1.0';
+    $base = 'GET&' . rawurlencode($api_url) . '&' . rawurlencode($oauth_hash);
+    $sigkey = rawurlencode($secret) . '&' . rawurlencode($token_secret);
+    $signature = base64_encode(hash_hmac('sha1', $base, $sigkey, true));
+    $signature = rawurlencode($signature);
+    $oauth_header = 'oauth_consumer_key="' . $key . '", oauth_nonce="' . (time() + 5 * 3600) . '", oauth_signature="' . $signature . '", oauth_signature_method="HMAC-SHA1", oauth_timestamp="' . (time() + 5 * 3600) . '", oauth_token="' . $token . '", oauth_version="1.0", ';
+    $curl_header = array("Authorization: Oauth {$oauth_header}", 'Expect:');
     $curl_request = curl_init();
-    curl_setopt($curl_request, CURLOPT_URL, 'https://api.twitter.com/1/statuses/oembed.json?url=' . $url);
+    curl_setopt($curl_request, CURLOPT_HTTPHEADER, $curl_header);
+    curl_setopt($curl_request, CURLOPT_HEADER, false);
+    curl_setopt($curl_request, CURLOPT_URL, $api_url);
     curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl_request, CURLOPT_SSL_VERIFYPEER, false);
     $json = curl_exec($curl_request);
     curl_close($curl_request);
 
+    // Get data
     $data = json_decode($json);
 
     if (empty($data)) {
@@ -56,6 +108,32 @@ function meedan_oembed_twitter_handler($provider, $url) {
       watchdog('MeedanOEmbedTwitter', t('Error from Twitter: ') . $data->errors[0]->message);
       return NULL;
     }
+
+    // We just want the geotag
+    $geo = isset($data->geo) ? $data->geo : NULL;
+
+    // Now request the oEmbed respose (check https://dev.twitter.com/docs/api/1/get/statuses/oembed)
+    $api_url = 'https://api.twitter.com/1/statuses/oembed.json?hide_thread=1&url=' . $url;
+    $curl_request = curl_init();
+    curl_setopt($curl_request, CURLOPT_URL, $api_url);
+    curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl_request, CURLOPT_SSL_VERIFYPEER, false);
+    $json = curl_exec($curl_request);
+    curl_close($curl_request);
+
+    // Get data
+    $data = json_decode($json);
+
+    if (empty($data)) {
+      watchdog('MeedanOEmbedTwitter', t('Empty response'));
+      return NULL;
+    }
+    if (isset($data->errors)) {
+      watchdog('MeedanOEmbedTwitter', t('Error from Twitter: ') . $data->errors[0]->message);
+      return NULL;
+    }
+
+    $data->geo = $geo;
 
     // Reject overly long 2 byte sequences, as well as characters above U+10000
     $data->html = preg_replace('/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]'.
@@ -69,8 +147,8 @@ function meedan_oembed_twitter_handler($provider, $url) {
     $data->html = preg_replace('/\xE0[\x80-\x9F][\x80-\xBF]'.
       '|\xED[\xA0-\xBF][\x80-\xBF]/S', '', $data->html);
 
-    // We don't want to load conversations
-    $data->html = preg_replace('/<blockquote /', '<blockquote data-conversation="none" ', $data->html);
+    // We don't want to load conversations and we want it full-width
+    $data->html = preg_replace('/<blockquote /', '<blockquote data-conversation="none" width="100%" ', $data->html);
 
     $embed = $data;
 

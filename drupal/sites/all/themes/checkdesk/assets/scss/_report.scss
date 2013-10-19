@@ -152,7 +152,7 @@ $report-activity-header-color: 			darken($light-grey, 10%);
 			border-bottom: 1px solid rgba(0,0,0,.05);
 			text-align: center;
 			.container {
-				max-width: 100%;
+        width: 100%;
 				// since we stack the report actions vertically
 				// on media item's side
 				min-height: 260px;
@@ -238,8 +238,19 @@ $report-activity-header-color: 			darken($light-grey, 10%);
 				}
 
 				.twitter {
-					width: 100%;
-					max-width: 100%;
+          iframe {
+            width: 100% !important;
+          }
+          .embed-geo-data {
+            text-align: opposite-position($from-direction);
+	          font-size: $smaller-font-size;
+            margin: 0;
+            margin-top: 10px;
+            margin-#{opposite-position($from-direction)}: 25px;
+            .icon-pushpin {
+		          @include icon('pushpin');
+            }
+          }
 					.oembed-content, .oembed-attributes {
 						padding: 0 $gutter-width;
 					}
