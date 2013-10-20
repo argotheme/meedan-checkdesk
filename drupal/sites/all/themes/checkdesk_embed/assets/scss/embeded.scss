@@ -1,10 +1,19 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans-Regular.ttf");
+}
+
 $from-direction: left !default;
 
 body.page-embed {
   padding: 0;
   margin: 0;
+  font-family: 'OpenSans', 'Helvetica', 'Arial', sans-serif !important;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.5;
 
   #main {
     padding: 0 !important;
