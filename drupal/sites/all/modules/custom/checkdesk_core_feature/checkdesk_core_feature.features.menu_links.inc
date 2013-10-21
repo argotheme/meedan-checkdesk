@@ -137,7 +137,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/post',
     'router_path' => 'node/add/post',
-    'link_title' => 'Compose update',
+    'link_title' => 'Compose translation',
     'options' => array(
       'attributes' => array(),
       'alter' => TRUE,
@@ -491,7 +491,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
   t('<user>');
   t('Administer users');
   t('Bookmarklet');
-  t('Compose update');
+  t('Compose translation');
   t('Create story');
   t('Edit fact-checking statement');
   t('Fact-checking statement');

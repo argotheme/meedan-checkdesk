@@ -5,7 +5,7 @@
 	<?php foreach ($rows as $id => $row): ?>
 	  <div class="update-row <?php print $classes_array[$id]; ?>">
 	  	<header class="update-info">
-	    	<?php print t('Update'); ?> <b>#<?php print $update_number; ?></b>
+	    	<?php print t('Translation'); ?> <b>#<?php print $update_number; ?></b>
 	    </header>
 	    <?php print $row; ?>
 	  </div>

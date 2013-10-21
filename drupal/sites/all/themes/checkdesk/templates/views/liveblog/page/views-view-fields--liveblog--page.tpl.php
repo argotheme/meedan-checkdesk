@@ -93,7 +93,7 @@
 
     <a class="story-footer" href="<?php print url('node/' . $fields['nid']->raw); ?>">
       <div class="story-continue">
-        <span class="link"></span> <span class="permalink"><?php print t('Go to story'); ?></span>
+        <span class="link"></span> <span class="permalink"><?php print t('Go to milestone'); ?></span>
       </div>
       <div class="story-updated-at">
         <?php print t('Updated at ') . render($fields['changed']->content) . ' ' . $timezone; ?>
