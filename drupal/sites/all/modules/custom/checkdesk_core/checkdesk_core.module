@@ -979,7 +979,7 @@ function checkdesk_core_discussion_ajax_node_form_submit_callback($form, &$form_
 
   // Redirect to compose update page is user is not on it yet
   if (isset($_SERVER["HTTP_REFERER"]) && $_SERVER["HTTP_REFERER"] !== url('node/add/post', array('absolute' => TRUE))) {
-    $commands[] = ctools_ajax_command_redirect('node/add/post');
+    $commands[] = ctools_ajax_command_redirect('/');
   }
 
   // Update form if user is on compose update page

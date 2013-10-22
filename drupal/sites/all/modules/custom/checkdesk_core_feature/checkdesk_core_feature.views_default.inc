@@ -1350,7 +1350,7 @@ print theme(\'views_autorefresh\', array(\'interval\' => $interval, \'use_base_f
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Reports';
+  $handler->display->display_options['title'] = 'Tweets';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
@@ -1485,7 +1485,7 @@ print theme(\'views_autorefresh\', array(\'interval\' => $interval, \'use_base_f
   $handler->display->display_options['pager']['options']['load_all'] = 0;
   $handler->display->display_options['path'] = 'reports';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'View incoming citizen reports';
+  $handler->display->display_options['menu']['title'] = 'View incoming tweets';
   $handler->display->display_options['menu']['weight'] = '50';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
@@ -1503,7 +1503,7 @@ print theme(\'views_autorefresh\', array(\'interval\' => $interval, \'use_base_f
   $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
   $translatables['reports'] = array(
     t('Master'),
-    t('Reports'),
+    t('Tweets'),
     t('more'),
     t('Apply'),
     t('Reset'),

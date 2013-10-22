@@ -3531,6 +3531,10 @@ textarea {
   font-size: 15.3px;
 }
 
+.user-alert {
+  display: none;
+}
+
 .messages,
 .user-alert,
 .messages-heading {

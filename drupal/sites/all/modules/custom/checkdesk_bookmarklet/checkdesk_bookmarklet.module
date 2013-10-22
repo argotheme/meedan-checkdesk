@@ -39,7 +39,7 @@ function checkdesk_bookmarklet_form_alter(&$form, $form_state, $form_id) {
 
     // Just show explanation about the bookmarklet
     $form['help'] = array(
-      '#markup' => '<div id="meedan_bookmarklet_help"><span>' . t('Help') . '<p>' . t('When you submit a report it becomes available for fact-checking and may be included in a blog post by our team.') . '</p></span></div>',
+      '#markup' => '<div id="meedan_bookmarklet_help"><span>' . t('Help') . '<p>' . t('Submit a tweet to be translated.') . '</p></span></div>',
       '#weight' => -1,
     );
 
@@ -63,11 +63,7 @@ function checkdesk_bookmarklet_form_alter(&$form, $form_state, $form_id) {
     $form['field_link']['#weight'] = -1;
     $form['report_preview']['#weight'] = 0;
 
-    // Change field attributes
-    $form['body']['und'][0]['#attributes'] = array('placeholder' => t('Add more info or write a description. What\'s the context? Does this link need to be fact-checked? What evidence do you have?'), 'rows' => 5);
-
-    // Description textarea should not be resizable
-    $form['body']['und'][0]['#resizable'] = FALSE;
+    unset($form['body']);
 
     // Load JavaScript for the form
     $form['#after_build'] = array('_checkdesk_bookmarklet_load_javascript_for_bookmarklet_form');
@@ -215,17 +211,7 @@ function checkdesk_bookmarklet_preprocess_html(&$variables, $hook) {
 
     $attributes = array('target' => '_blank', 'onclick' => 'if (window.parent.location.host == window.location.host) { window.parent.location.href = this.href; return false; }');
 
-    $variables['meedan_bookmarklet_messages'] = array('<span class="meedan-bookmarklet-success">' . t('Success: Report created') . '</span>');
-
-    if (in_array('journalist', $user->roles) || in_array('administrator', $user->roles)) {
-      $variables['meedan_bookmarklet_messages'][] = t('Now let\'s !fact_check and !blog.', array(
-        '!fact_check' => l(t('fact-check it'), url('user/' . $user->uid, array('absolute' => TRUE)), array('attributes' => $attributes)),
-        '!blog' => l(t('blog about it'), url('node/add/post', array('absolute' => TRUE, 'query' => array('report' => $_GET['meedan_bookmarklet_nid']))), array('attributes' => $attributes)),
-      ));
-    }
-    else {
-      $variables['meedan_bookmarklet_messages'][] = l(t('View your reports.'), url('user/' . $user->uid, array('absolute' => TRUE)), array('attributes' => $attributes));
-    }
+    $variables['meedan_bookmarklet_messages'] = array('<span class="meedan-bookmarklet-success">' . t('Success: Tweet created') . '</span>');
 
     $variables['footer'] = '<input type="reset" onclick="window.parent.postMessage(\'destroy\', \'*\'); window.location.href = \'' . $reset_url . '\'" value="' . t('Close') . '" class="form-submit" id="meedan_bookmarklet_cancel_button" />';
 

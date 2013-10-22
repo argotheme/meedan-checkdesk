@@ -157,7 +157,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'reports',
     'router_path' => 'reports',
-    'link_title' => 'View incoming citizen reports',
+    'link_title' => 'View incoming tweets',
     'options' => array(),
     'module' => 'system',
     'hidden' => 0,
@@ -503,7 +503,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
   t('Sign in');
   t('Submit tweet');
   t('Terms of use');
-  t('View incoming citizen reports');
+  t('View incoming tweets');
   t('إضافة المتصفح');
   t('بيان التحقق من صحة المعلومات');
   t('شروط الاستخدام');

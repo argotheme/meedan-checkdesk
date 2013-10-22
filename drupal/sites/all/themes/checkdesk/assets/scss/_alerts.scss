@@ -15,6 +15,10 @@
   font-size: $fontSizeSmall;
 }
 
+.user-alert {
+  display: none;
+}
+
 .messages,
 .user-alert,
 .messages-heading {
