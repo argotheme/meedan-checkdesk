@@ -169,7 +169,7 @@ function checkdesk_preprocess_block(&$variables) {
   $variables['elements']['#block']->subject = '';
   // Add Compose Update on update form
   if($variables['elements']['#block']->bid == 'checkdesk_core-post') {
-    $variables['elements']['#block']->subject = t('Compose Update'); 
+    $variables['elements']['#block']->subject = t('Compose Translation'); 
   }
 }
 
@@ -232,7 +232,7 @@ function checkdesk_preprocess_page(&$variables) {
         );
 
         $variables['main_menu'][$id]['html'] = TRUE;
-        $variables['main_menu'][$id]['title'] = theme('checkdesk_dropdown_menu_item', array('title' => t('Submit report')));
+        $variables['main_menu'][$id]['title'] = theme('checkdesk_dropdown_menu_item', array('title' => t('Submit tweet')));
         $variables['main_menu'][$id]['attributes']['data-toggle'] = 'dropdown';
         $variables['main_menu'][$id]['attributes']['class'] = array('dropdown-toggle');
         $variables['main_menu'][$id]['attributes']['id'] = 'menu-submit-report';
@@ -245,7 +245,7 @@ function checkdesk_preprocess_page(&$variables) {
         $content = drupal_get_form('discussion_node_form', $node, 'ajax');
 
         $variables['main_menu'][$id]['html'] = TRUE;
-        $variables['main_menu'][$id]['title'] = theme('checkdesk_dropdown_menu_item', array('title' => t('Create story')));
+        $variables['main_menu'][$id]['title'] = theme('checkdesk_dropdown_menu_item', array('title' => t('Create milestone')));
         $variables['main_menu'][$id]['attributes']['data-toggle'] = 'dropdown';
         $variables['main_menu'][$id]['attributes']['class'] = array('dropdown-toggle');
         $variables['main_menu'][$id]['attributes']['id'] = 'discussion-form-menu-link';
@@ -1072,21 +1072,22 @@ function checkdesk_twitter_signin_button() {
  * Adjust compose update form
  */
 function checkdesk_form_post_node_form_alter(&$form, &$form_state) {
-  $form['title']['#attributes']['placeholder'] = t('Update headline');
-
-  // $form['body'][LANGUAGE_NONE][0]['#title'] = NULL;
-  $form['body'][LANGUAGE_NONE][0]['#attributes']['placeholder'] = t('Write text and drag reports here to compose the update');
+  unset($form['title']);
+  
+  $form['field_desk'][LANGUAGE_NONE]['#title'] = t('Milestone');
+  
+  $form['body'][LANGUAGE_NONE][0]['#attributes']['placeholder'] = t('Drag and drop a tweet here and write the translation');
 }
 
 /**
  * Adjust create story form
  */
 function checkdesk_form_discussion_node_form_alter(&$form, &$form_state) {
-  $form['title']['#title'] = t('Story title');
-  $form['title']['#attributes']['placeholder'] = t('Story title');
+  $form['title']['#title'] = t('Milestone title');
+  $form['title']['#attributes']['placeholder'] = t('Milestone title');
 
-  $form['body'][LANGUAGE_NONE][0]['#attributes']['placeholder'] = t('Add a brief description of the story (optional)');
-  $form['body'][LANGUAGE_NONE][0]['#description'] = t('A story contains one or more liveblog updates. The story will remain unpublished until the first update is created.');
+  $form['body'][LANGUAGE_NONE][0]['#attributes']['placeholder'] = t('Add a brief description of the milestone (optional)');
+  $form['body'][LANGUAGE_NONE][0]['#description'] = t('A milestone contains one or more translations. The milestone will remain unpublished until the first translation is created.');
 
   $form['field_lead_image']['#prefix'] = '<div class="custom_file_upload">';
   $form['field_lead_image']['#suffix'] = '</div">';

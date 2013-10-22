@@ -37,7 +37,7 @@
   <?php endif; ?>
   <div class="filters-wrapper">
     <header>
-      <h2><?php print t('Incoming Reports'); ?></h2>
+      <h2><?php print t('Incoming Tweets'); ?></h2>
     </header>
     <ul class="panels">
       <li id="sort-by" class="panel">

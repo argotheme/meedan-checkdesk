@@ -52,7 +52,7 @@ jQuery(function($) {
     }
     else {
       done.attr('disabled', 'disabled');
-      $('.fb-message .description').html(Drupal.t('You can only add reports from Twitter'));
+      $('.fb-message .description').html(Drupal.t('You can only add links from Twitter'));
     }
   });
 

@@ -391,17 +391,17 @@ function checkdesk_core_feature_image_default_styles() {
 function checkdesk_core_feature_node_info() {
   $items = array(
     'discussion' => array(
-      'name' => t('Story'),
+      'name' => t('Milestone'),
       'base' => 'node_content',
-      'description' => t('Where reports are verified and blog posts created.'),
+      'description' => t('A milestone contains a list of translations.'),
       'has_title' => '1',
       'title_label' => t('Headline'),
       'help' => '',
     ),
     'media' => array(
-      'name' => t('Report'),
+      'name' => t('Tweet'),
       'base' => 'node_content',
-      'description' => t('A report containing a media item.'),
+      'description' => t('A tweet to be translated.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -415,9 +415,9 @@ function checkdesk_core_feature_node_info() {
       'help' => '',
     ),
     'post' => array(
-      'name' => t('Update'),
+      'name' => t('Translation'),
       'base' => 'node_content',
-      'description' => t('A liveblog post.'),
+      'description' => t('A translation of a tweet.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

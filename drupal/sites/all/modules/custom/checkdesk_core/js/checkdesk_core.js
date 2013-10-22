@@ -57,7 +57,7 @@
             value = CKEDITOR.instances[$textarea.attr('id')].getData();
           }
           if (value && value.match(/\[[^:]+:[0-9]+\]/g)) {
-            alert(Drupal.t('You can only add one report here')); 
+            alert(Drupal.t('You can only add one tweet here')); 
             return;
           }
           

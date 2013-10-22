@@ -87,7 +87,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
     'has_children' => 0,
     'expanded' => 0,
     'weight' => -49,
-    'uuid' => '90476ce1-c57a-48e8-b95a-abc56aae9886',
+    'uuid' => '16dcd9b5-d588-4ee8-a112-d99ce98f0f11',
     'language' => 'und',
     'customized' => 1,
     'parent_path' => '<sub>',
@@ -97,7 +97,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/discussion',
     'router_path' => 'node/add/discussion',
-    'link_title' => 'Create story',
+    'link_title' => 'Create milestone',
     'options' => array(
       'attributes' => array(),
       'alter' => TRUE,
@@ -117,7 +117,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
     'menu_name' => 'main-menu',
     'link_path' => 'node/add/media',
     'router_path' => 'node/add/media',
-    'link_title' => 'Submit report',
+    'link_title' => 'Submit tweet',
     'options' => array(
       'attributes' => array(),
       'alter' => TRUE,
@@ -492,7 +492,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
   t('Administer users');
   t('Bookmarklet');
   t('Compose translation');
-  t('Create story');
+  t('Create milestone');
   t('Edit fact-checking statement');
   t('Fact-checking statement');
   t('Home');
@@ -501,7 +501,7 @@ function checkdesk_core_feature_menu_default_menu_links() {
   t('My account');
   t('Notifications');
   t('Sign in');
-  t('Submit report');
+  t('Submit tweet');
   t('Terms of use');
   t('View incoming citizen reports');
   t('إضافة المتصفح');

@@ -823,7 +823,7 @@ function checkdesk_core_form_post_node_form_alter(&$form, &$form_state) {
   }
 
   // Change title.
-  drupal_set_title(t('Compose Update'));
+  drupal_set_title(t('Compose Translation'));
 }
 
 /**
@@ -847,7 +847,7 @@ function _checkdesk_core_post_node_form_validate($form, &$form_state) {
   // Prevent user from adding more than one report to an update
   preg_match_all('/\[[^:]+:[0-9]+\]/', $form_state['values']['body'][LANGUAGE_NONE][0]['value'], $matches);
   if (is_array($matches) && isset($matches[0]) && count($matches[0]) > 1) {
-    form_set_error('body', t('You can add only one report per update'));
+    form_set_error('body', t('You can add only one tweet per translation'));
   }
 
   // Prevent user from saving a new draft if another one exists already.

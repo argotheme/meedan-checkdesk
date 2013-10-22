@@ -50,7 +50,7 @@
 
     <?php if (isset($compose_update_form)) { ?>
       <div class="compose-update-form">
-        <div class="compose-update-header"><a href="#"><?php print t('Compose Update'); ?></a></div>
+        <div class="compose-update-header"><a href="#"><?php print t('Compose Translation'); ?></a></div>
         <?php print $compose_update_form; ?>
       </div>
     <?php } ?>
