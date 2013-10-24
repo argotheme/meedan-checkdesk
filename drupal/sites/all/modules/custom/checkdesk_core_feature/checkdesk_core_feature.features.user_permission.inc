@@ -206,6 +206,15 @@ function checkdesk_core_feature_user_default_permissions() {
     'module' => 'features',
   );
 
+  // Exported permission: administer feeds.
+  $permissions['administer feeds'] = array(
+    'name' => 'administer feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
+  );
+
   // Exported permission: administer field permissions.
   $permissions['administer field permissions'] = array(
     'name' => 'administer field permissions',
@@ -449,6 +458,33 @@ function checkdesk_core_feature_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
+  );
+
+  // Exported permission: clear node feeds.
+  $permissions['clear node feeds'] = array(
+    'name' => 'clear node feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
+  );
+
+  // Exported permission: clear tweets feeds.
+  $permissions['clear tweets feeds'] = array(
+    'name' => 'clear tweets feeds',
+    'roles' => array(
+      'journalist' => 'journalist',
+    ),
+    'module' => 'feeds',
+  );
+
+  // Exported permission: clear user feeds.
+  $permissions['clear user feeds'] = array(
+    'name' => 'clear user feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
   );
 
   // Exported permission: create article content.
@@ -928,6 +964,33 @@ function checkdesk_core_feature_user_default_permissions() {
     'module' => 'flag',
   );
 
+  // Exported permission: import node feeds.
+  $permissions['import node feeds'] = array(
+    'name' => 'import node feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
+  );
+
+  // Exported permission: import tweets feeds.
+  $permissions['import tweets feeds'] = array(
+    'name' => 'import tweets feeds',
+    'roles' => array(
+      'journalist' => 'journalist',
+    ),
+    'module' => 'feeds',
+  );
+
+  // Exported permission: import user feeds.
+  $permissions['import user feeds'] = array(
+    'name' => 'import user feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
+  );
+
   // Exported permission: manage features.
   $permissions['manage features'] = array(
     'name' => 'manage features',
@@ -1143,6 +1206,33 @@ function checkdesk_core_feature_user_default_permissions() {
     'name' => 'unflag spam',
     'roles' => array(),
     'module' => 'flag',
+  );
+
+  // Exported permission: unlock node feeds.
+  $permissions['unlock node feeds'] = array(
+    'name' => 'unlock node feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
+  );
+
+  // Exported permission: unlock tweets feeds.
+  $permissions['unlock tweets feeds'] = array(
+    'name' => 'unlock tweets feeds',
+    'roles' => array(
+      'journalist' => 'journalist',
+    ),
+    'module' => 'feeds',
+  );
+
+  // Exported permission: unlock user feeds.
+  $permissions['unlock user feeds'] = array(
+    'name' => 'unlock user feeds',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'feeds',
   );
 
   // Exported permission: use PHP for settings.

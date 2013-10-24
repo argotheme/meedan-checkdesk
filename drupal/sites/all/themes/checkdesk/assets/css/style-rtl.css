@@ -6516,6 +6516,14 @@ html body .livefyre-wrapper {
 #meedan_bookmarklet .footer input:active, #meedan_bookmarklet .footer input:active:visited {
   color: white;
 }
+#meedan_bookmarklet .meedan-bookmarklet-batch-link {
+  clear: both;
+  font-size: 15px;
+  margin-bottom: 11px;
+}
+#meedan_bookmarklet #meedan_bookmarklet_cancel_button {
+  margin-bottom: 11px;
+}
 #meedan_bookmarklet #user-login label,
 #meedan_bookmarklet #user-login input[type=text],
 #meedan_bookmarklet #user-login input[type=password],

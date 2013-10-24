@@ -71,6 +71,16 @@ $bookmarklet-height: $bookmarklet-width + ($bookmarklet-width * 0.61803);
     }
   }
 
+  .meedan-bookmarklet-batch-link {
+    clear: both;
+    font-size: $small-font-size;
+    margin-bottom: $gutter-width;
+  }
+
+  #meedan_bookmarklet_cancel_button {
+    margin-bottom: $gutter-width;
+  }
+
 }
 
 @mixin bookmarklet-step-one() {

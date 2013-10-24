@@ -13,6 +13,10 @@ function checkdesk_core_feature_ctools_plugin_api() {
     return array("version" => "3");
   }
   list($module, $api) = func_get_args();
+  if ($module == "feeds" && $api == "feeds_importer_default") {
+    return array("version" => "1");
+  }
+  list($module, $api) = func_get_args();
   if ($module == "heartbeat" && $api == "heartbeat") {
     return array("version" => "1");
   }
