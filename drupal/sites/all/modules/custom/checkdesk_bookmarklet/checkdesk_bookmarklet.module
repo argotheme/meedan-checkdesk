@@ -87,7 +87,7 @@ function checkdesk_bookmarklet_form_alter(&$form, $form_state, $form_id) {
 
     // Link for batch upload
     $form['batch_link'] = array(
-      '#markup' => '<div class="meedan-bookmarklet-batch-link">' . t('You can also !link.', array('!link' => l(t('import many tweets at once'), 'import/tweets'))) . '</div>',
+      '#markup' => '<div class="meedan-bookmarklet-batch-link">' . t('You can also !link.', array('!link' => l(t('import many tweets at once'), 'import/tweets', array('attributes' => array('target' => 'blank'))))) . '</div>',
       '#weight' => 99,
     );
   }

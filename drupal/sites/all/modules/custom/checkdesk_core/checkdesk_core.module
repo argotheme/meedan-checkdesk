@@ -2217,3 +2217,13 @@ function _checkdesk_validation_ajax_unique_field() {
             ->rowCount();
   return drupal_json_output(array('result' => !(bool)$exists));
 }
+
+/**
+ * Implements hook_feeds_presave().
+ */
+function checkdesk_core_feeds_presave(FeedsSource $source, $entity, $item) {
+  if ($entity->type == 'media') {
+    global $user;
+    $entity->uid = $user->uid;
+  }
+}
