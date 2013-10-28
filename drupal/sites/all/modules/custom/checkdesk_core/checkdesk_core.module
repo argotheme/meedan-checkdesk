@@ -1060,6 +1060,27 @@ function checkdesk_core_views_pre_render(&$view) {
       }
     }
   }
+
+  // Sort tweets by tweet date
+  else if ($view->name == 'updates_for_stories') {
+    foreach ($view->result as $index => $update) {
+      $node = node_load($update->nid);
+      $entity = entity_metadata_wrapper('node', $node);
+      foreach ($entity->reports->getIterator() as $delta => $report) {
+        $view->result[$index]->report_date = intval(strtotime($report->value()->embed->created_at));
+      }
+    }
+    uasort($view->result, '_checkdesk_core_sort_updates_on_story');
+    $i = 0;
+    foreach ($view->result as $index => $update) {
+      $view->result[$index]->order = $i;
+      $i++;
+    }
+  }
+}
+
+function _checkdesk_core_sort_updates_on_story($a, $b) {
+  return $a->report_date > $b->report_date ? -1 : 1;
 }
 
 /**
