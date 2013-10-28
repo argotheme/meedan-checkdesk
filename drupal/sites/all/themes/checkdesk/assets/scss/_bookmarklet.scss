@@ -77,7 +77,7 @@ $bookmarklet-height: $bookmarklet-width + ($bookmarklet-width * 0.61803);
     margin-bottom: $gutter-width;
   }
 
-  #meedan_bookmarklet_cancel_button {
+  #meedan_bookmarklet_cancel_button, #edit-submit {
     margin-bottom: $gutter-width;
   }
 
