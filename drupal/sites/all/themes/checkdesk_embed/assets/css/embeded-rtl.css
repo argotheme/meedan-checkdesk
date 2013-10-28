@@ -24,6 +24,9 @@ body.page-embed #main #content {
 body.page-embed #main .update-row .update-body {
   width: 100%;
 }
+body.page-embed #main .update-body {
+  font-size: 16px;
+}
 
 .report {
   padding: 0 !important;
