@@ -193,6 +193,7 @@ function checkdesk_core_feature_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     4 => '4',
+    5 => '5',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -1669,11 +1670,6 @@ print theme(\'views_autorefresh\', array(\'interval\' => $interval, \'use_base_f
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Contextual filter: Content: Story (field_desk) */
   $handler->display->display_options['arguments']['field_desk_target_id']['id'] = 'field_desk_target_id';
   $handler->display->display_options['arguments']['field_desk_target_id']['table'] = 'field_data_field_desk';
