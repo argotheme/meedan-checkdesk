@@ -25,19 +25,6 @@
     <?php print render($content); ?>
   </div>
 
-  <div class="oembed-attributes">
-    <?php if ($favicon_link) : ?>
-      <div class="favicon"><?php print $favicon_link ?></div>
-    <?php endif ?>
-    <?php if (isset($embed->author_name)) : ?>
-      <div class="author"><?php print $embed->author_url ? l($embed->author_name, $embed->author_url) : $embed->author_name; ?></div>
-    <?php endif ?>
-    <?php if (isset($embed->original_url)) : ?>
-      <div class="permalink">
-        <?php print l('<span class="icon-link"></span>', $embed->original_url, array('attributes' => array('title' => t('View original')), 'html' => TRUE)); ?>
-      </div>
-    <?php endif ?>
-  </div>
   <?php if (isset($embed_error)) : ?>
     <div class="embederror"><?php print $embed_error ?></div>
   <?php endif ?>

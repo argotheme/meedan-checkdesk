@@ -12,11 +12,26 @@
     // @include vertical-margin($base-font-size);
     // @include span-columns($width, $context, $gutter-width);
     // @debug $width;
-    .update-body {
+    .update-wrapper {
       @include span-columns(14); 
-      float: $omega;
-      min-height: 220px;
       margin-#{$omega}: 0;
+      float: $omega;
+    }
+    .update-body-wrapper {
+      padding: $gutter-width;
+			background-color: rgba(0,0,0,.05);
+    }
+    .update-body {
+      clear: both;
+      // Copying style from Twitter embedding
+      @include border-radius(5px);
+      @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.14902));
+      padding: 8px;
+      margin: 0 auto;
+      background: $white;
+      border-color: rgb(238, 238, 238) rgb(221, 221, 221) rgb(187, 187, 187);
+      border-width: 1px;
+      border-style: solid;
     }
     .update-footer {
       @include span-columns(4);

@@ -6,7 +6,6 @@
 
 	// added by
 	.added-by {
-		float: $alpha;
 		color: rgba(0,0,0,.8);
 		font-size: modular-scale(0) - modular-scale(-3); // 14px
     padding: 0;
@@ -17,6 +16,11 @@
 		}
 	}
 
+  .report {
+    float: none;
+    margin-bottom: 0;
+  }
+
 	a {
 		color: $report-text-color;
 		&:hover {
@@ -25,8 +29,6 @@
 	}
 
 	.update-body {
-    padding-top: $absolute-line-height/2 - 4; // to align with update number
-
     .update-title {
       font-size: $larger-font-size;
       line-height: 1.4;
@@ -34,7 +36,6 @@
       @if $from-direction == 'left' {
         letter-spacing: -.03em;
       }
-      // padding-bottom: $absolute-line-height/2;
     }
 
 		.node-media {

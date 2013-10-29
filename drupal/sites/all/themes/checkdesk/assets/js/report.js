@@ -21,12 +21,23 @@
 
   Drupal.behaviors.reports = {
     attach: function (context, settings) {
-      // HACK: Footnotes should go to the end of the update body
-      $('.update-body', context).each(function() {
-        var $update = $(this);
-        $update.find('.report-activity').each(function() {
-          $update.next('.added-by').after($(this));
-        });
+      // HACK to fit the wireframes of OOEW
+      $('.update', context).each(function() {
+
+        var $update = $(this),
+            $translation = $update.find('.update-body'),
+            $tweet = $translation.find('.node-media:first'),
+            $annotations = $tweet.find('.report-activity');
+
+        // Rearrange
+        $translation.before($tweet);
+        $translation.append($update.find('.added-by'));
+        $update.append($annotations);
+
+        // Wrap
+        $translation.wrap('<div class="update-body-wrapper" />');
+        $update.find('.node-media, .update-body-wrapper, .report-activity').wrapAll('<div class="update-wrapper" />');
+
       });
 
       // Remove duplicates added incrementally by views_autorefresh after loading more content with views_load_more

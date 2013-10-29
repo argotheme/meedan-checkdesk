@@ -155,7 +155,6 @@ $report-activity-header-color: 			darken($light-grey, 10%);
         width: 100%;
 				// since we stack the report actions vertically
 				// on media item's side
-				min-height: 260px;
 				text-align: $from-direction;
 
 				.oembed-content {
@@ -468,12 +467,6 @@ $report-activity-header-color: 			darken($light-grey, 10%);
 				overflow: visible;
 				margin-#{opposite-position($from-direction)}:5px; 
 			}
-		}
-		// header hover
-		&:hover {
-			background-color: rgba(0, 0, 0, 0.5);
-			color: $white;
-			a { color: $white; }
 		}
 	}
 

@@ -5296,7 +5296,6 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
 }
 .report .report-content .report-media .container {
   width: 100%;
-  min-height: 260px;
   text-align: left;
 }
 .report .report-content .report-media .container .oembed-content {
@@ -5692,13 +5691,6 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
   text-align: right;
   overflow: visible;
   margin-right: 5px;
-}
-.report-activity > header:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-.report-activity > header:hover a {
-  color: white;
 }
 .report-activity > .in-progress {
   background-color: rgba(239, 202, 43, 0.2);
@@ -6156,7 +6148,6 @@ div.sensitive-hide {
   clear: both;
 }
 .update .added-by {
-  float: left;
   color: rgba(0, 0, 0, 0.8);
   font-size: 14px;
   padding: 0;
@@ -6166,14 +6157,15 @@ div.sensitive-hide {
   color: rgba(0, 0, 0, 0.4);
   font-size: 11px;
 }
+.update .report {
+  float: none;
+  margin-bottom: 0;
+}
 .update a {
   color: #595959;
 }
 .update a:hover {
   color: #0088ff;
-}
-.update .update-body {
-  padding-top: 8px;
 }
 .update .update-body .update-title {
   font-size: 25px;
@@ -8319,14 +8311,34 @@ body.page-liveblog #main .view-liveblog .pager-load-more .ajax-progress-throbber
   background: url("../imgs/icons/loader_white.gif");
 }
 
-.node-type-discussion #main .update-row .update-body, .page-liveblog #main .update-row .update-body {
+.node-type-discussion #main .update-row .update-wrapper, .page-liveblog #main .update-row .update-wrapper {
   width: 77.433%;
   float: left;
   margin-right: 1.55148%;
   display: inline;
-  float: right;
-  min-height: 220px;
   margin-right: 0;
+  float: right;
+}
+.node-type-discussion #main .update-row .update-body-wrapper, .page-liveblog #main .update-row .update-body-wrapper {
+  padding: 11px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.node-type-discussion #main .update-row .update-body, .page-liveblog #main .update-row .update-body {
+  clear: both;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14902);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14902);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14902);
+  padding: 8px;
+  margin: 0 auto;
+  background: white;
+  border-color: #eeeeee #dddddd #bbbbbb;
+  border-width: 1px;
+  border-style: solid;
 }
 .node-type-discussion #main .update-row .update-footer, .page-liveblog #main .update-row .update-footer {
   width: 21.01551%;
