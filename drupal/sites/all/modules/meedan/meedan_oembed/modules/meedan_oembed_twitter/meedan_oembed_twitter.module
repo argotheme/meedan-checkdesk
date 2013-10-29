@@ -150,7 +150,7 @@ function meedan_oembed_twitter_handler($provider, $url) {
       '|\xED[\xA0-\xBF][\x80-\xBF]/S', '', $data->html);
 
     // We don't want to load conversations and we want it full-width
-    $data->html = preg_replace('/<blockquote /', '<blockquote data-conversation="none" width="100%" ', $data->html);
+    $data->html = preg_replace('/<blockquote /', '<blockquote data-conversation="none" width="100%" data-link-color="#6A6A6A" ', $data->html);
 
     $embed = $data;
 
