@@ -890,12 +890,7 @@ function checkdesk_core_form_discussion_node_form_alter(&$form, &$form_state) {
   // after the form is rebuilt by AJAX we need the hacks to stay active.
   $form['#attributes']['class'][] = 'cd-keep-tb-dropdown-open';
 
-  $file_size = $form['field_lead_image'][LANGUAGE_NONE][0]['#upload_validators']['file_validate_size'][0];
-  $formats = $form['field_lead_image'][LANGUAGE_NONE][0]['#upload_validators']['file_validate_extensions'][0];
-  $file_upload_description = t('Image must be less than !size.', array('!size' => format_size($file_size))) . 
-                             ' ' . 
-                             t('Allowed file types: !extensions.', array('!extensions' => $formats));
-  $form['field_lead_image'][LANGUAGE_NONE][0]['#description'] = $file_upload_description;
+  unset($form['field_lead_image']);
 
   $form['actions']['submit']['#ajax'] = array(
     'callback' => 'checkdesk_core_discussion_ajax_node_form_submit_callback',
@@ -917,17 +912,6 @@ function checkdesk_core_form_discussion_node_form_alter(&$form, &$form_state) {
   );
 
   $form['body'][$form['#node']->language][0]['#after_build'][] = 'checkdesk_core_discussion_node_form_after_build';
-
-  // Make the upload field customizable
-  drupal_add_js(libraries_get_path('fileinput') . '/jquery.fileinput.js');
-  drupal_add_js(drupal_get_path('module', 'checkdesk_core') . '/js/fileinput.js');
-  $fileinput = array(
-    'change' => t('Change'),
-    'button' => t('Browse'),
-    'field'  => t('Add optional feature image'),
-  );
-  drupal_add_js(array('fileInput' => $fileinput), 'setting');
-  drupal_add_css(libraries_get_path('fileinput') . '/fileinput.css');
 }
 
 /**
