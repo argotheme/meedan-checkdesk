@@ -4280,6 +4280,8 @@ div.tabs {
   *zoom: 1;
   padding-top: 11px;
   padding-bottom: 11px;
+  position: relative;
+  z-index: 2;
 }
 div.tabs:before, div.tabs:after {
   display: table;

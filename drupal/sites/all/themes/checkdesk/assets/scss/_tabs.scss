@@ -30,6 +30,8 @@ div.tabs {
   @include reset-box-model;
   @include ctb-clearfix;
   padding: { top: $tab-padding; bottom: $tab-padding; }
+  position: relative;
+  z-index: 2;
   
   ul.primary {
     @include reset-box-model;
