@@ -31,9 +31,7 @@
     <?php if (isset($media_activity_report_count)) : ?>
       <section id="report-activity-node-<?php print $node->nid; ?>" class="report-activity">
           <header<?php if ($status_class) print ' class="' . $status_class . '"'; ?>>
-            <a class="report-activity-header" href="#">
-              <h3 class="report-footnotes-count"><?php print format_plural($media_activity_report_count, '<span>1</span> Translation Note', '<span>@count</span> Translation Notes'); ?></h3>
-            </a>
+            <h3 class="report-footnotes-count"><?php print format_plural($media_activity_report_count, '<span>1</span> Translation Note', '<span>@count</span> Translation Notes'); ?></h3>
           </header>
           <div class="activity-wrapper">
             <?php print $media_activity_report; ?>

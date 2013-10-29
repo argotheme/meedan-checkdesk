@@ -30,12 +30,7 @@
 
 	.update-body {
     .update-title {
-      font-size: $larger-font-size;
-      line-height: 1.4;
-      padding-top: $absolute-line-height/3;
-      @if $from-direction == 'left' {
-        letter-spacing: -.03em;
-      }
+      display: none;
     }
 
 		.node-media {

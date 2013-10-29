@@ -6169,9 +6169,7 @@ div.sensitive-hide {
   color: #0088ff;
 }
 .update .update-body .update-title {
-  font-size: 25px;
-  line-height: 1.4;
-  padding-top: 9.6px;
+  display: none;
 }
 .update .update-body .node-media {
   *zoom: 1;

@@ -6170,10 +6170,7 @@ div.sensitive-hide {
   color: #0088ff;
 }
 .update .update-body .update-title {
-  font-size: 25px;
-  line-height: 1.4;
-  padding-top: 8px;
-  letter-spacing: -.03em;
+  display: none;
 }
 .update .update-body .node-media {
   *zoom: 1;
