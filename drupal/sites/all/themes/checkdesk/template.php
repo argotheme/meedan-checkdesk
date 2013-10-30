@@ -982,11 +982,18 @@ function _checkdesk_comment_form_submit($form, $form_state) {
   // Update footnotes
   $commands[] = ajax_command_replace('#report-activity-node-' . $nid . ' .view-activity-report', $output);
   // Update footnotes count
-  $commands[] = ajax_command_replace('#report-activity-node-' . $nid . ' .report-footnotes-count', format_plural($view->total_rows, '<span>1</span> Translation Note', '<span>@count</span> Translation Notes'));
-  // Clear textarea
-  $commands[] = ajax_command_invoke('#report-activity-node-' . $nid . ' .comment-form textarea', 'val', array(''));
+  $commands[] = ajax_command_html('#report-activity-node-' . $nid . ' .report-footnotes-count', format_plural($view->total_rows, '<span>1</span> Translation Note', '<span>@count</span> Translation Notes'));
+  // Clear textarea or remove form
+  if ($view->total_rows < 3) {
+    $commands[] = ajax_command_invoke('#report-activity-node-' . $nid . ' .comment-form textarea', 'val', array(''));
+  }
+  else {
+    $commands[] = ajax_command_remove('#report-activity-node-' . $nid . ' .comment-form');
+  }
   // Scroll to new footnote
   $commands[] = ajax_command_invoke('#report-activity-node-' . $nid, 'scrollToHere');
+
+  $view->destroy();
 
   return array('#type' => 'ajax', '#commands' => $commands);
 }

@@ -1386,7 +1386,15 @@ define('RATING_VERIFIED', 'Verified');
  * Implements hook_form_FORM_ID_alter() for `comment_node_media_form`.
  */
 function checkdesk_core_form_comment_node_media_form_alter(&$form, $form_state, $form_id) {
-  // Footnotes will be always available here
+  // Footnotes form will be always available here if there are less than three of them
+  $view = views_get_view('activity_report');
+  $view->set_arguments(array($form['#node']->nid));
+  $view->get_total_rows = TRUE;
+  $output = $view->preview('block');
+  if ($view->total_rows >= 3) {
+    $form['#access'] = FALSE;
+  }
+  $view->destroy();
 }
 
 /**
