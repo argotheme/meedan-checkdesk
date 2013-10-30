@@ -611,7 +611,7 @@ function checkdesk_preprocess_node(&$variables) {
           'class' => 'gravatar'
         )    
       );
-      $variables['user_avatar'] = l(theme('image_style', array('path' => $user_picture->uri, 'alt' => t(check_plain($variables['elements']['#node']->name)), 'style_name' => 'navigation_avatar')), 'user/'. $variables['uid'], $options);
+      $variables['user_avatar'] = theme('image_style', array('path' => $user_picture->uri, 'alt' => t(check_plain($variables['elements']['#node']->name)), 'style_name' => 'navigation_avatar'));
     }
     // Add node creation info (author name plus creation time)
     $variables['post_creation_info'] = t('Translated by !user <span class="separator">&#9679;</span> <time class="date-time" datetime="!timestamp">!interval ago</time>', array(
