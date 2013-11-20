@@ -179,6 +179,11 @@
           }
         }
       });
+
+      // Enable submit buttons
+      $('.comment-form', context).find('input[type=text], textarea').unbind('keyup').keyup(function() {
+        $(this).parents('.comment-form').find('button, input[type=submit]').removeAttr('disabled');
+      });
     }
   };
 

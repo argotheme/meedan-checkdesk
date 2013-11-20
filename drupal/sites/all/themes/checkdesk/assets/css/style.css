@@ -5639,9 +5639,16 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
   top: 0;
   right: 11px;
   text-align: right;
-  width: 20%;
+  width: 23%;
   color: rgba(0, 0, 0, 0.3);
   font-size: 14px;
+}
+.activity-wrapper .view-content .activity header .remove-activity {
+  position: absolute;
+  top: 30px;
+  right: 11px;
+  text-align: right;
+  font-size: 11px;
 }
 .activity-wrapper .activity-list-footer {
   padding: 0 11px;

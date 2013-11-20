@@ -41,7 +41,7 @@ jQuery(function($) {
   $('.fb-message .description').show().html('');
   $('#edit-field-link-und-0-url').keyup(function() {
     var url = $(this).val(),
-        done = $('#edit-submit'),
+        done = $('#meedan_bookmarklet #edit-submit'),
         wait;
     if (/^https?:\/\/twitter\.com\/.+/.test(url)) {
       done.removeAttr('disabled');
