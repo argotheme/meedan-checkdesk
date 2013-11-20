@@ -233,7 +233,7 @@ function _checkdesk_alter($files, $type) {
 // }
 
 function checkdesk_checkdesk_heartbeat_content($variables) {
-  global $language;
+  global $language, $user;
   $message = $variables['message'];
 
   // set variables for new comment aka fact-checking footnote
@@ -314,7 +314,9 @@ function checkdesk_checkdesk_heartbeat_content($variables) {
   $output .= '<time class="time" title=' . format_date($message->timestamp, 'custom', t('g:ia')) . '>';
   $output .= t('!time ago', array('!time' => format_interval((time() - $message->timestamp), 1)));
   $output .= '</time>';
-  $output .= l(t('Remove'), url('heartbeat/nojs/activity/delete/' . $message->uaid, array('language' => $language, 'absolute' => true)), array('attributes' => array('class' => 'remove-activity')));
+  if ($message->uid == $user->uid || in_array('administrator', $user->roles)) {
+    $output .= l(t('Remove'), url('heartbeat/nojs/activity/delete/' . $message->uaid, array('language' => $language, 'absolute' => true)), array('attributes' => array('class' => 'remove-activity')));
+  }
   $output .= '</header>';
   return $output;
 }

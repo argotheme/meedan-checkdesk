@@ -161,6 +161,26 @@ function checkdesk_core_feature_user_default_permissions() {
     'module' => 'twitter',
   );
 
+  // Exported permission: admin heartbeat delete all.
+  $permissions['admin heartbeat delete all'] = array(
+    'name' => 'admin heartbeat delete all',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'heartbeat',
+  );
+
+  // Exported permission: admin heartbeat delete own.
+  $permissions['admin heartbeat delete own'] = array(
+    'name' => 'admin heartbeat delete own',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'citizen journalist' => 'citizen journalist',
+      'journalist' => 'journalist',
+    ),
+    'module' => 'heartbeat',
+  );
+
   // Exported permission: administer actions.
   $permissions['administer actions'] = array(
     'name' => 'administer actions',
