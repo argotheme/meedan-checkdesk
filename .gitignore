@@ -19,3 +19,6 @@ drupal/sites/default
 
 # Exclude devel's stuff
 drupal/FirePHPCore
+
+bin
+vendor
