@@ -27,17 +27,25 @@
         var $update = $(this),
             $translation = $update.find('.update-body'),
             $tweet = $translation.find('.node-media:first'),
-            $annotations = $tweet.find('.report-activity');
+            $annotations = $tweet.find('.report-activity'),
+            $translatedby = $update.find('.added-by');
 
-        // Rearrange
         $translation.before($tweet);
-        $translation.append($update.find('.added-by'));
+
+        // Hide "translated by" if there is no translation
+        var translated = !(/^\s*$/.test($translation.text()));
+        if (!translated) {
+          $translatedby.hide();
+        }
+        else {
+          $translation.append($translatedby);
+        }
+        
         $update.append($annotations);
 
         // Wrap
         $translation.wrap('<div class="update-body-wrapper" />');
         $update.find('.node-media, .update-body-wrapper, .report-activity').wrapAll('<div class="update-wrapper" />');
-
       });
 
       // Remove duplicates added incrementally by views_autorefresh after loading more content with views_load_more
