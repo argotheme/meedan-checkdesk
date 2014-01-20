@@ -5567,9 +5567,9 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
 }
 .activity-wrapper .view-content .activity header .actor {
   display: inline-block;
-  width: 10%;
+  width: 22%;
   padding-top: 9.6px;
-  padding-left: 22px;
+  padding-left: 5px;
   text-align: left;
   vertical-align: top;
   font-weight: 700;
@@ -5584,9 +5584,9 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
 .activity-wrapper .view-content .activity header .activity-inner-wrapper {
   position: relative;
   display: inline-block;
-  width: 62%;
+  width: 45%;
   padding: 9.6px 0 28.8px 0;
-  padding-right: 22px;
+  padding-right: 5px;
   border-right: 4px solid rgba(0, 0, 0, 0.1);
 }
 .activity-wrapper .view-content .activity header .icon {
@@ -5638,7 +5638,7 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
   top: 0;
   left: 11px;
   text-align: left;
-  width: 23%;
+  width: 25%;
   color: rgba(0, 0, 0, 0.3);
   font-size: 14px;
 }
