@@ -1530,9 +1530,9 @@ function checkdesk_core_form_alter(&$form, $form_state, $form_id) {
  * Validation function for `media_node_form`.
  */
 function _checkdesk_core_media_node_form_validate($form, &$form_state) {
-  // Prevent user from submitting a report that is not from Twitter
-  if (!preg_match('/^https?:\/\/twitter.com\/.+/', $form_state['values']['field_link'][LANGUAGE_NONE][0]['url'])) {
-    form_set_error('field_link', t('You can only add links from Twitter'));
+  // Prevent user from submitting a report that is not from Twitter or Instagram
+  if (!preg_match('/^https?:\/\/(twitter|instagram).com\/.+/', $form_state['values']['field_link'][LANGUAGE_NONE][0]['url'])) {
+    form_set_error('field_link', t('You can only add links from Twitter or Instagram'));
   }
 }
 

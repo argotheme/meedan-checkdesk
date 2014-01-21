@@ -43,7 +43,7 @@ jQuery(function($) {
     var url = $(this).val(),
         done = $('#meedan_bookmarklet #edit-submit'),
         wait;
-    if (/^https?:\/\/twitter\.com\/.+/.test(url)) {
+    if (/^https?:\/\/(twitter|instagram)\.com\/.+/.test(url)) {
       done.removeAttr('disabled');
       clearTimeout($.data(this, 'timer'));
       wait = setTimeout(getMediaPreview, 1500);
@@ -52,7 +52,7 @@ jQuery(function($) {
     }
     else {
       done.attr('disabled', 'disabled');
-      $('.fb-message .description').html(Drupal.t('You can only add links from Twitter'));
+      $('.fb-message .description').html(Drupal.t('You can only add links from Twitter or Instagram'));
     }
   });
 

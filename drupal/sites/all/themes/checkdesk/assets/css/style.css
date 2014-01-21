@@ -5321,6 +5321,13 @@ body.widgets #main #footer #footer-inner, body.sidebar-first #main #footer #foot
 .report .report-content .report-media .container .oembed-title {
   display: none;
 }
+.report .report-content .report-media .container .instagram .oembed-title {
+  display: block;
+}
+.report .report-content .report-media .container .instagram .oembed-title:hover {
+  color: #595959;
+  text-decoration: none;
+}
 .report .report-content .report-media .container .title {
   padding: 0;
 }
