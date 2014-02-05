@@ -1049,6 +1049,7 @@ function checkdesk_core_views_pre_render(&$view) {
   }
 
   // Sort tweets by tweet date
+  /*
   else if ($view->name == 'updates_for_stories') {
     foreach ($view->result as $index => $update) {
       $node = node_load($update->nid);
@@ -1064,11 +1065,14 @@ function checkdesk_core_views_pre_render(&$view) {
       $i++;
     }
   }
+  */
 }
 
+/*
 function _checkdesk_core_sort_updates_on_story($a, $b) {
   return $a->report_date > $b->report_date ? -1 : 1;
 }
+*/
 
 /**
  * (Ab)use pathauto to create the drag and drop media reference.
