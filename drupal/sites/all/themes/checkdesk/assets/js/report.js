@@ -18,6 +18,15 @@
     }
   });
 
+  var parseTranslation = function(text) {
+    // URLs
+    text = text.replace(/(^|[^0-9A-Z&\/]+)(https?:\/\/[^\s]+)/gi, '$1<a href="$2" target="_blank">$2</a>');
+    // Hashtags
+    text = text.replace(/(^|[^0-9A-Z&\/]+)(#|\uFF03)([0-9A-Z_]*[A-Z_]+[a-z0-9_\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff]*)/gi, '$1<a href="http://twitter.com/search?q=%23$3" target="_blank">$2$3</a>');
+    // Usernames
+    text = text.replace(/(^|[^0-9A-Z&\/]+)(@)([A-Za-z0-9_]{1,15})/gi, '$1<a href="http://twitter.com/$3" target="_blank">$2$3</a>');
+    return text;
+  };
 
   Drupal.behaviors.reports = {
     attach: function (context, settings) {
@@ -31,6 +40,7 @@
             $translatedby = $update.find('.added-by');
 
         $translation.before($tweet);
+        $translation.html(parseTranslation($translation.html()));
 
         // Hide "translated by" if there is no translation
         var translated = !(/^\s*$/.test($translation.text()));
