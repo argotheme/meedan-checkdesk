@@ -23,7 +23,14 @@
 		html += '</div>';
 
 		return html;
-	};
+};
+
+  // global unicode range for FF
+  Drupal.behaviors.multilingual = {
+    attach: function(context) {
+      $('h1').unicodeRange({debug:true});
+    }
+  };
 
 	// filters for reports inside sidebar
 	Drupal.behaviors.reportsPage = {
